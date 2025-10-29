@@ -33,7 +33,8 @@ public class JwtService {
             .id(account.id())
             .issuer("Insper::PMA")
             .claims(Map.of(
-                "email", account.email()
+                "email", account.email(),
+                "role", account.role()
             ))
             .signWith(getKey())
             .subject(account.name())
@@ -45,6 +46,14 @@ public class JwtService {
     }
 
     public String getId(String jwt) {
+        return getClaims(jwt).getId();
+    }
+
+    public String getRole(String jwt) {
+        return getClaims(jwt).get("role", String.class);
+    }
+
+    private Claims getClaims(String jwt) {
         // constroe o parser
         JwtParser parser = Jwts.parser().verifyWith(getKey()).build();
         // recupero os atributos
@@ -62,7 +71,7 @@ public class JwtService {
                 "Token is expired!"
             );
         }
-        return claims.getId();
+        return claims;
     }
 
     private SecretKey getKey() {

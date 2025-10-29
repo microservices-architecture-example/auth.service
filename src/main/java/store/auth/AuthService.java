@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import store.account.AccountController;
 import store.account.AccountIn;
 import store.account.AccountOut;
+import store.account.Role;
 
 @Service
 public class AuthService {
@@ -73,6 +74,7 @@ public class AuthService {
     public AccountOut solve(String jwt) {
         return AccountOut.builder()
             .id(jwtService.getId(jwt))
+            .role(Role.valueOf(jwtService.getRole(jwt)))
             .build();
     }
 

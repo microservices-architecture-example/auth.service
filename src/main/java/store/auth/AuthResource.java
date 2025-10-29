@@ -45,7 +45,8 @@ public class AuthResource implements AuthController {
         AccountOut account = authService.solve(in.jwt());
         return ResponseEntity.ok(
             Map.of(
-                "idAccount", account.id()
+                "AccountId", account.id(),
+                "role", account.role().toString()
             )
         );
     }
