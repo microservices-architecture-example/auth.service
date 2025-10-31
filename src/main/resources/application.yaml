@@ -17,3 +17,7 @@ logging:
   level:
     root: INFO
     store: DEBUG
+
+springdoc:
+  api-docs:
+    path: /auth/api-docs
