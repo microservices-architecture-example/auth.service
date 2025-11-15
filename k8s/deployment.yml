@@ -13,7 +13,7 @@ spec:
         app: auth
     spec:
       containers:
-        - name: db
+        - name: auth
           image: luigilopesz/auth:latest
           imagePullPolicy: Always
           ports:
